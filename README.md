@@ -13,14 +13,14 @@
 - Check in AWS instance connect that everything went well and make the necessary commands below
 ```
 cd /var/log/
-          
 cat user-data.log
+
 cd /Ansible
 sudo chmod -R 777 .
 cd jenkinstests
 git config --global --add safe.directory '*'
 pwd
-git checkout -f  test1
+git checkout -f  test1 #name of branch
 cd ./playbooks/ #change to playbook folder
 ansible-playbook Jenkins-playbook.yml
 ansible-playbook PHP-playbook.yml
