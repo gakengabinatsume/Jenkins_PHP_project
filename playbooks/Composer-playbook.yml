@@ -1,0 +1,24 @@
+---
+- name: Install Composer
+  hosts: localhost
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Update all packages to their latest version
+    apt:
+      name: "*"
+      state: latest
+
+  - name: Composer | Install Composer latest-stable
+    get_url:
+      url: https://getcomposer.org/download/latest-stable/composer.phar
+      checksum: 'sha256:https://getcomposer.org/download/latest-stable/composer.phar.sha256sum'
+      dest: /usr/local/bin/composer.phar
+      mode: 0755
+
+  - name: Composer | Symlink composer.phar
+    file:
+      src: composer.phar
+      dest: /usr/local/bin/composer
+      state: link
